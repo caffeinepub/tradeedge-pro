@@ -1,28 +1,25 @@
-# TradeEdge Pro - Professional Trading Website
+# TradeNikhil Universe Chain
 
 ## Current State
-New project with no existing code.
+The site has 5 pages: Home, About, Signals, Education, Contact. Navbar has links to all 5. App.tsx uses TanStack Router.
 
 ## Requested Changes (Diff)
 
 ### Add
-- Homepage with hero section, market stats ticker, features overview, and CTA
-- About page with company mission, team section, and trading philosophy
-- Trading Signals page with forex and crypto signal cards (buy/sell, entry/target/stop-loss)
-- Trading Education page with course cards, video lessons, and resource library
-- Contact page with contact form and support info
-- Persistent navigation with logo, links, and dark theme
-- Footer with links, social icons, and disclaimer
+- **Membership page** (`/membership`) with 3 pricing tiers: Basic, Advance, Conqueror — each with features list, price, and a "Get Started" CTA button linking to /payment
+- **Payment page** (`/payment`) showing 3 payment method options: Bitcoin, UPI, PayPal — with relevant wallet addresses/IDs, copy-to-clipboard, and a confirmation note
+- New routes in App.tsx for /membership and /payment
+- Navbar links: add "Membership" and "Payment" to navLinks array
 
 ### Modify
-N/A
+- Navbar: add Membership and Payment links
+- App.tsx: register new routes
 
 ### Remove
-N/A
+- Nothing removed
 
 ## Implementation Plan
-1. Backend: Store contact form submissions, trading signals, and education resources
-2. Frontend: Multi-page SPA with React Router, dark theme (navy/black bg, gold accents)
-3. Pages: Home, About, Signals, Education, Contact
-4. Components: Navbar, Footer, SignalCard, CourseCard, MarketTicker, HeroSection
-5. Sample content: Realistic forex/crypto signals and education course data
+1. Create MembershipPage.tsx with 3 tier cards (Basic, Advance, Conqueror), features, prices, CTA to /payment
+2. Create PaymentPage.tsx with Bitcoin, UPI, PayPal payment info with copy-to-clipboard
+3. Update App.tsx to import and register new routes
+4. Update Navbar.tsx to include Membership and Payment nav links

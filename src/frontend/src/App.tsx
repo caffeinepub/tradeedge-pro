@@ -5,6 +5,8 @@ import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import EducationPage from "@/pages/EducationPage";
 import HomePage from "@/pages/HomePage";
+import MembershipPage from "@/pages/MembershipPage";
+import PaymentPage from "@/pages/PaymentPage";
 import SignalsPage from "@/pages/SignalsPage";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
@@ -47,6 +49,18 @@ const educationRoute = createRoute({
   component: EducationPage,
 });
 
+const membershipRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/membership",
+  component: MembershipPage,
+});
+
+const paymentRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/payment",
+  component: PaymentPage,
+});
+
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact",
@@ -58,6 +72,8 @@ const routeTree = rootRoute.addChildren([
   aboutRoute,
   signalsRoute,
   educationRoute,
+  membershipRoute,
+  paymentRoute,
   contactRoute,
 ]);
 
