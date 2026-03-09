@@ -44,8 +44,11 @@ export default function Navbar() {
               <TrendingUp className="w-4 h-4 text-primary" />
             </div>
             <span className="font-display font-bold text-lg">
-              <span className="gold-gradient">TradeEdge</span>
-              <span className="text-foreground/80 font-normal"> Pro</span>
+              <span className="gold-gradient">TradeNikhil</span>
+              <span className="text-foreground/80 font-normal">
+                {" "}
+                Universe Chain
+              </span>
             </span>
           </Link>
 

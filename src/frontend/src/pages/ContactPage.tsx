@@ -119,7 +119,7 @@ export default function ContactPage() {
                 Email Support
               </h3>
               <p className="text-sm text-muted-foreground">
-                support@tradeedgepro.com
+                nikhilsingh123321123@gmail.com
               </p>
             </motion.div>
 

@@ -19,8 +19,11 @@ export default function Footer() {
                 <TrendingUp className="w-4 h-4 text-primary" />
               </div>
               <span className="font-display font-bold text-lg">
-                <span className="gold-gradient">TradeEdge</span>
-                <span className="text-foreground/80 font-normal"> Pro</span>
+                <span className="gold-gradient">TradeNikhil</span>
+                <span className="text-foreground/80 font-normal">
+                  {" "}
+                  Universe Chain
+                </span>
               </span>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed mb-6">
@@ -132,9 +135,9 @@ export default function Footer() {
             <strong className="text-foreground/60">Risk Disclaimer:</strong>{" "}
             Trading forex and cryptocurrencies involves significant risk of loss
             and is not suitable for all investors. Past performance is not
-            indicative of future results. TradeEdge Pro does not provide
-            investment advice. All signals are for educational purposes only.
-            Never invest more than you can afford to lose.
+            indicative of future results. TradeNikhil Universe Chain does not
+            provide investment advice. All signals are for educational purposes
+            only. Never invest more than you can afford to lose.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <p className="text-xs text-muted-foreground">
@@ -149,7 +152,7 @@ export default function Footer() {
               </a>
             </p>
             <p className="text-xs text-muted-foreground">
-              &copy; {year} TradeEdge Pro. All rights reserved.
+              &copy; {year} TradeNikhil Universe Chain. All rights reserved.
             </p>
           </div>
         </div>
