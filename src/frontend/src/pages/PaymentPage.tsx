@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
-import { Bitcoin, CheckCircle, Copy, Info } from "lucide-react";
+import { Bitcoin, CheckCircle, Copy, Info, Key } from "lucide-react";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { SiPaypal } from "react-icons/si";
@@ -115,6 +115,50 @@ export default function PaymentPage() {
         </div>
       </section>
 
+      {/* Access Code Callout */}
+      <section className="container mx-auto px-4 pb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="max-w-3xl mx-auto"
+        >
+          <div
+            className="glass-card rounded-2xl p-6 border border-primary/40 relative overflow-hidden"
+            style={{ boxShadow: "0 0 40px rgba(212,175,55,0.12)" }}
+            data-ocid="payment.access_code.panel"
+          >
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary/15 border border-primary/30 flex items-center justify-center flex-shrink-0">
+                <Key className="w-5 h-5 text-primary" />
+              </div>
+              <div>
+                <h3 className="font-display font-bold text-base mb-1 text-foreground">
+                  How to Access Your Member Area
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  After completing your payment, you will receive a unique{" "}
+                  <span className="text-primary font-semibold">
+                    access code
+                  </span>{" "}
+                  via email or WhatsApp within 2 hours. Use this code to unlock
+                  your exclusive member area on the{" "}
+                  <Link
+                    to="/membership"
+                    className="text-primary hover:text-primary/80 underline underline-offset-2"
+                    data-ocid="payment.membership.link"
+                  >
+                    Membership page
+                  </Link>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Payment Cards */}
       <section className="container mx-auto px-4 pb-16">
         <div className="max-w-3xl mx-auto space-y-6">
@@ -123,7 +167,7 @@ export default function PaymentPage() {
               key={method.id}
               initial={{ opacity: 0, x: -24 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.15 + 0.2 }}
+              transition={{ delay: i * 0.15 + 0.3 }}
               className={`glass-card rounded-2xl p-7 border ${method.borderClass} ${method.glowClass} relative overflow-hidden`}
               data-ocid={`payment.${method.id}.card`}
             >

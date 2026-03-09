@@ -8,6 +8,9 @@ import HomePage from "@/pages/HomePage";
 import MembershipPage from "@/pages/MembershipPage";
 import PaymentPage from "@/pages/PaymentPage";
 import SignalsPage from "@/pages/SignalsPage";
+import AdvanceMemberPage from "@/pages/member/AdvanceMemberPage";
+import BasicMemberPage from "@/pages/member/BasicMemberPage";
+import ConquerorMemberPage from "@/pages/member/ConquerorMemberPage";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { createRootRoute, createRoute } from "@tanstack/react-router";
 import { Outlet } from "@tanstack/react-router";
@@ -67,6 +70,24 @@ const contactRoute = createRoute({
   component: ContactPage,
 });
 
+const basicMemberRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/member/basic",
+  component: BasicMemberPage,
+});
+
+const advanceMemberRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/member/advance",
+  component: AdvanceMemberPage,
+});
+
+const conquerorMemberRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/member/conqueror",
+  component: ConquerorMemberPage,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   aboutRoute,
@@ -75,6 +96,9 @@ const routeTree = rootRoute.addChildren([
   membershipRoute,
   paymentRoute,
   contactRoute,
+  basicMemberRoute,
+  advanceMemberRoute,
+  conquerorMemberRoute,
 ]);
 
 const router = createRouter({ routeTree });

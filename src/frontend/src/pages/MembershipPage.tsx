@@ -24,7 +24,7 @@ const tiers = [
       "Monthly market recap report",
     ],
     cta: "Get Started",
-    color: "secondary",
+    memberPath: "/member/basic" as const,
   },
   {
     id: "advance",
@@ -47,7 +47,7 @@ const tiers = [
       "Portfolio tracker tools",
     ],
     cta: "Get Started",
-    color: "primary",
+    memberPath: "/member/advance" as const,
   },
   {
     id: "conqueror",
@@ -71,7 +71,7 @@ const tiers = [
       "Signal copy-trading integration",
     ],
     cta: "Join the Elite",
-    color: "primary",
+    memberPath: "/member/conqueror" as const,
   },
 ];
 
@@ -254,6 +254,17 @@ export default function MembershipPage() {
                     {tier.cta}
                   </Link>
                 </Button>
+
+                {/* Already a member link */}
+                <div className="mt-3 text-center">
+                  <Link
+                    to={tier.memberPath}
+                    className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
+                    data-ocid={`membership.${tier.id}.link`}
+                  >
+                    Already a member? Access content →
+                  </Link>
+                </div>
               </div>
             </motion.div>
           ))}
