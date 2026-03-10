@@ -31,34 +31,34 @@
     --card-foreground: 0.94 0.01 255;
     --popover: 0.13 0.025 255;
     --popover-foreground: 0.94 0.01 255;
-    --primary: 0.78 0.12 85;
-    --primary-foreground: 0.1 0.02 85;
+    --primary: 0.65 0.25 300;
+    --primary-foreground: 0.98 0.005 255;
     --secondary: 0.62 0.18 235;
     --secondary-foreground: 0.98 0.005 255;
     --muted: 0.18 0.02 255;
     --muted-foreground: 0.6 0.02 255;
-    --accent: 0.78 0.12 85;
-    --accent-foreground: 0.1 0.02 85;
+    --accent: 0.65 0.25 300;
+    --accent-foreground: 0.98 0.005 255;
     --destructive: 0.62 0.2 25;
     --destructive-foreground: 0.98 0.005 255;
     --border: 0.22 0.025 255;
     --input: 0.18 0.02 255;
-    --ring: 0.78 0.12 85;
+    --ring: 0.65 0.25 300;
     --radius: 0.5rem;
-    --chart-1: 0.78 0.12 85;
+    --chart-1: 0.65 0.25 300;
     --chart-2: 0.62 0.18 235;
     --chart-3: 0.72 0.15 165;
     --chart-4: 0.62 0.2 25;
     --chart-5: 0.65 0.15 310;
     --sidebar: 0.1 0.02 255;
     --sidebar-foreground: 0.94 0.01 255;
-    --sidebar-primary: 0.78 0.12 85;
-    --sidebar-primary-foreground: 0.1 0.02 85;
+    --sidebar-primary: 0.65 0.25 300;
+    --sidebar-primary-foreground: 0.98 0.005 255;
     --sidebar-accent: 0.15 0.025 255;
     --sidebar-accent-foreground: 0.94 0.01 255;
     --sidebar-border: 0.22 0.025 255;
-    --sidebar-ring: 0.78 0.12 85;
-    --gold: 0.78 0.12 85;
+    --sidebar-ring: 0.65 0.25 300;
+    --gold: 0.65 0.25 300;
     --blue: 0.62 0.18 235;
     --green-signal: 0.72 0.15 165;
     --red-signal: 0.62 0.2 25;
@@ -82,8 +82,8 @@
   .glass-card {
     background: oklch(0.12 0.02 255 / 0.8);
     backdrop-filter: blur(12px);
-    border: 1px solid oklch(0.78 0.12 85 / 0.15);
-    box-shadow: 0 4px 24px oklch(0 0 0 / 0.4), inset 0 1px 0 oklch(0.78 0.12 85 / 0.08);
+    border: 1px solid oklch(0.65 0.25 300 / 0.15);
+    box-shadow: 0 4px 24px oklch(0 0 0 / 0.4), inset 0 1px 0 oklch(0.65 0.25 300 / 0.08);
   }
 
   .glass-card-blue {
@@ -102,14 +102,14 @@
   }
 
   .gold-gradient {
-    background: linear-gradient(135deg, oklch(0.78 0.12 85), oklch(0.88 0.14 75));
+    background: linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gold-glow {
-    box-shadow: 0 0 20px oklch(0.78 0.12 85 / 0.3), 0 0 40px oklch(0.78 0.12 85 / 0.1);
+    box-shadow: 0 0 20px oklch(0.65 0.25 300 / 0.3), 0 0 40px oklch(0.65 0.25 300 / 0.1);
   }
 
   .blue-glow {
@@ -152,8 +152,8 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 20px oklch(0.78 0.12 85 / 0.2); }
-  50% { box-shadow: 0 0 40px oklch(0.78 0.12 85 / 0.5); }
+  0%, 100% { box-shadow: 0 0 20px oklch(0.65 0.25 300 / 0.2); }
+  50% { box-shadow: 0 0 40px oklch(0.65 0.25 300 / 0.5); }
 }
 
 .ticker-scroll {
@@ -166,7 +166,7 @@
 
 .hero-grid {
   background-image:
-    linear-gradient(oklch(0.78 0.12 85 / 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(0.78 0.12 85 / 0.03) 1px, transparent 1px);
+    linear-gradient(oklch(0.65 0.25 300 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.65 0.25 300 / 0.03) 1px, transparent 1px);
   background-size: 60px 60px;
 }

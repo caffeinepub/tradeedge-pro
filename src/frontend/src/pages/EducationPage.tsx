@@ -1,14 +1,23 @@
 const skeletonKeys = ["sk-a", "sk-b", "sk-c", "sk-d", "sk-e", "sk-f"];
+const eduStats = [
+  { label: "Free Courses", value: "20+" },
+  { label: "Members Enrolled", value: "500+" },
+  { label: "Win Rate", value: "85%" },
+];
 
 import { Category, type EducationResource } from "@/backend.d";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetAllEducationResources } from "@/hooks/useQueries";
+import { Link } from "@tanstack/react-router";
 import {
   BarChart3,
   BookOpen,
   Clock,
+  Crown,
+  GraduationCap,
   Layers,
   Star,
   TrendingUp,
@@ -92,6 +101,114 @@ const sampleResources: EducationResource[] = [
     difficultyLevel: "analysis",
     duration: BigInt(280),
   },
+  {
+    id: BigInt(9),
+    title: "Support & Resistance Zones",
+    description:
+      "Learn to identify key price levels where markets repeatedly reverse. Master horizontal S/R, dynamic levels, and how institutions use these zones to place orders.",
+    category: Category.forex,
+    difficultyLevel: "beginner",
+    duration: BigInt(190),
+  },
+  {
+    id: BigInt(10),
+    title: "Trend Lines & Channels",
+    description:
+      "Draw trend lines correctly, identify ascending/descending channels, and use breakouts and retests for high-probability trade entries.",
+    category: Category.forex,
+    difficultyLevel: "beginner",
+    duration: BigInt(160),
+  },
+  {
+    id: BigInt(11),
+    title: "Moving Averages & EMA",
+    description:
+      "Master SMA, EMA, and WMA. Learn golden cross, death cross, dynamic support/resistance using 20/50/200 EMA and trend-following strategies.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(210),
+  },
+  {
+    id: BigInt(12),
+    title: "Bollinger Bands Strategy",
+    description:
+      "Use Bollinger Bands for volatility measurement, squeeze setups, mean reversion trades, and combining with RSI for confluence entries.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(175),
+  },
+  {
+    id: BigInt(13),
+    title: "RSI & MACD Mastery",
+    description:
+      "Deep dive into RSI divergences, overbought/oversold signals, MACD histogram analysis, signal line crossovers, and combining both for powerful entries.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(230),
+  },
+  {
+    id: BigInt(14),
+    title: "Volume Analysis & VSA",
+    description:
+      "Understand volume spread analysis, accumulation/distribution phases, volume climax signals, and how smart money uses volume to manipulate and move price.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(195),
+  },
+  {
+    id: BigInt(15),
+    title: "Candlestick Patterns Complete Guide",
+    description:
+      "Complete encyclopedia of 25+ candlestick patterns: Doji (4 types), Hammer, Hanging Man, Shooting Star, Inverted Hammer, Bullish/Bearish Engulfing, Morning Star, Evening Star, Harami, Pin Bar, Marubozu, Spinning Top, Three White Soldiers, Three Black Crows, Dragonfly Doji, Gravestone Doji, Dark Cloud Cover, Piercing Pattern — with reliability scores and entry rules.",
+    category: Category.forex,
+    difficultyLevel: "analysis",
+    duration: BigInt(320),
+  },
+  {
+    id: BigInt(16),
+    title: "Chart Patterns Mastery",
+    description:
+      "Complete guide to Head & Shoulders, Inverse H&S, Double Top/Bottom, Triple Top/Bottom, Ascending/Descending/Symmetrical Triangles, Bull/Bear Flags, Pennants, Wedges, Cup & Handle, Rounding Bottom — with entry, TP, and SL rules for each.",
+    category: Category.forex,
+    difficultyLevel: "advanced",
+    duration: BigInt(380),
+  },
+  {
+    id: BigInt(17),
+    title: "Trading Tools & Platforms",
+    description:
+      "Master MT4/MT5 and TradingView. Learn order types (Market, Limit, Stop, Stop-Limit), position sizing calculator, pip calculator, risk/reward tool, economic calendar, and broker selection criteria.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(250),
+  },
+  {
+    id: BigInt(18),
+    title: "Fibonacci Retracement & Extensions",
+    description:
+      "Apply Fibonacci retracement (0.236, 0.382, 0.5, 0.618, 0.786) and extensions (1.272, 1.618, 2.618). Find confluence zones, identify hidden S/R, and use Fib levels for precision entries and targets.",
+    category: Category.forex,
+    difficultyLevel: "advanced",
+    duration: BigInt(290),
+  },
+  {
+    id: BigInt(19),
+    title: "Market Structure & Liquidity",
+    description:
+      "Understand Higher Highs/Lows, Break of Structure (BOS), Change of Character (CHOCH), inducement, liquidity sweeps, stop hunts, and how institutional order flow drives price.",
+    category: Category.forex,
+    difficultyLevel: "advanced",
+    duration: BigInt(310),
+  },
+  {
+    id: BigInt(20),
+    title: "Trading Psychology & Mindset",
+    description:
+      "Overcome FOMO, revenge trading, and overtrading. Build a trader's mindset using journaling, rules-based trading, emotional discipline, and performance reviews.",
+    category: Category.forex,
+    difficultyLevel: "intermediate",
+    duration: BigInt(220),
+  },
 ];
 
 const levelColors: Record<string, string> = {
@@ -130,9 +247,9 @@ function CourseCard({
           border: "1px solid oklch(0.62 0.18 235 / 0.25)",
         }
       : {
-          background: "oklch(0.78 0.12 85 / 0.1)",
-          color: "oklch(0.78 0.12 85)",
-          border: "1px solid oklch(0.78 0.12 85 / 0.25)",
+          background: "oklch(0.65 0.25 300 / 0.1)",
+          color: "oklch(0.65 0.25 300)",
+          border: "1px solid oklch(0.65 0.25 300 / 0.25)",
         };
 
   return (
@@ -187,6 +304,77 @@ export default function EducationPage() {
 
   return (
     <div>
+      {/* BIG INTRO NOTE BANNER */}
+      <motion.div
+        initial={{ opacity: 0, y: -16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="w-full"
+        data-ocid="education.intro.panel"
+      >
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.65 0.25 300 / 0.12), oklch(0.12 0.02 255 / 0.95))",
+            borderBottom: "2px solid oklch(0.65 0.25 300 / 0.5)",
+            boxShadow:
+              "0 0 40px oklch(0.65 0.25 300 / 0.15), inset 0 1px 0 oklch(0.65 0.25 300 / 0.1)",
+          }}
+          className="px-4 py-6 md:py-8"
+        >
+          <div className="container mx-auto flex flex-col md:flex-row items-start md:items-center gap-4">
+            <div
+              className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
+              style={{
+                background: "oklch(0.65 0.25 300 / 0.15)",
+                border: "1px solid oklch(0.65 0.25 300 / 0.4)",
+              }}
+            >
+              <GraduationCap
+                className="w-7 h-7"
+                style={{ color: "oklch(0.75 0.28 290)" }}
+              />
+            </div>
+            <div className="flex-1">
+              <div
+                className="font-mono text-xs font-bold uppercase tracking-widest mb-1"
+                style={{ color: "oklch(0.75 0.28 290)" }}
+              >
+                FREE LEARNING ZONE
+              </div>
+              <p
+                className="font-display font-black text-lg md:text-xl leading-snug"
+                style={{ color: "oklch(0.92 0.01 255)" }}
+              >
+                Explore our free education resources below. For{" "}
+                <span style={{ color: "oklch(0.75 0.28 290)" }}>
+                  deep learning of advanced concepts
+                </span>
+                , institutional strategies, and live mentorship —{" "}
+                <span style={{ color: "oklch(0.75 0.28 290)" }}>
+                  you need to take our Membership Plan.
+                </span>
+              </p>
+            </div>
+            <Link to="/membership">
+              <Button
+                className="flex-shrink-0 font-bold"
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
+                  color: "white",
+                  boxShadow: "0 0 20px oklch(0.65 0.25 300 / 0.4)",
+                }}
+                data-ocid="education.intro.primary_button"
+              >
+                <Crown className="w-4 h-4 mr-2" />
+                Get Membership
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </motion.div>
+
       {/* Hero */}
       <section className="pt-16 py-20 relative overflow-hidden">
         <div className="absolute inset-0 hero-grid opacity-30" />
@@ -320,6 +508,137 @@ export default function EducationPage() {
           </div>
         )}
       </div>
+
+      {/* BIG OUTRO / MEMBERSHIP CTA */}
+      <motion.section
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="relative overflow-hidden"
+        data-ocid="education.membership.section"
+      >
+        <div
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.08 0.025 300), oklch(0.10 0.02 255) 50%, oklch(0.08 0.025 300))",
+            borderTop: "1px solid oklch(0.65 0.25 300 / 0.3)",
+            borderBottom: "1px solid oklch(0.65 0.25 300 / 0.3)",
+          }}
+          className="px-4 py-20"
+        >
+          <div
+            className="absolute top-0 left-1/4 w-96 h-96 blur-[120px] rounded-full pointer-events-none"
+            style={{ background: "oklch(0.65 0.25 300 / 0.08)" }}
+          />
+          <div
+            className="absolute bottom-0 right-1/4 w-96 h-96 blur-[120px] rounded-full pointer-events-none"
+            style={{ background: "oklch(0.62 0.18 235 / 0.06)" }}
+          />
+
+          <div className="relative z-10 container mx-auto text-center max-w-3xl">
+            <div
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-widest mb-6"
+              style={{
+                background: "oklch(0.65 0.25 300 / 0.15)",
+                border: "1px solid oklch(0.65 0.25 300 / 0.4)",
+                color: "oklch(0.75 0.28 290)",
+              }}
+            >
+              <Crown className="w-3.5 h-3.5" />
+              EXCLUSIVE MEMBERSHIP
+            </div>
+
+            <h2 className="font-display font-black text-4xl md:text-5xl lg:text-6xl mb-6 leading-tight">
+              Ready to{" "}
+              <span
+                style={{
+                  background:
+                    "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Go Deeper?
+              </span>
+            </h2>
+
+            <p className="text-muted-foreground text-lg md:text-xl leading-relaxed mb-4">
+              These free resources are just the beginning. Our Membership Plans
+              unlock{" "}
+              <strong className="text-foreground">
+                advanced institutional strategies
+              </strong>
+              , live trade rooms, exclusive PDFs, and{" "}
+              <strong className="text-foreground">
+                direct mentorship from Nikhil and the team
+              </strong>
+              . Don&apos;t just learn — master the markets.
+            </p>
+
+            <p
+              className="font-mono text-sm font-bold mb-10"
+              style={{ color: "oklch(0.75 0.28 290)" }}
+            >
+              Members get access to ADVANCE &amp; CONQUEROR tier content —
+              concepts not taught anywhere else.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link to="/membership">
+                <Button
+                  size="lg"
+                  className="font-bold text-lg px-10 py-6 rounded-xl"
+                  style={{
+                    background:
+                      "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
+                    color: "white",
+                    boxShadow:
+                      "0 0 30px oklch(0.65 0.25 300 / 0.5), 0 0 60px oklch(0.65 0.25 300 / 0.2)",
+                  }}
+                  data-ocid="education.membership.primary_button"
+                >
+                  <Crown className="w-5 h-5 mr-2" />
+                  Get Membership Now
+                </Button>
+              </Link>
+              <Link to="/about">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="font-semibold text-base px-8 py-6 rounded-xl border-primary/40 text-primary hover:bg-primary/10"
+                  data-ocid="education.membership.secondary_button"
+                >
+                  Meet the Team
+                </Button>
+              </Link>
+            </div>
+
+            <div className="mt-14 grid grid-cols-3 gap-6">
+              {eduStats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div
+                    className="font-display font-black text-3xl mb-1"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                    }}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-muted-foreground font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.section>
     </div>
   );
 }
