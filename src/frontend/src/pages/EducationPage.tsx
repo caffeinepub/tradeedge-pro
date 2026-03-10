@@ -17,7 +17,6 @@ import {
   BookOpen,
   Clock,
   Crown,
-  GraduationCap,
   Layers,
   Star,
   TrendingUp,
@@ -304,77 +303,6 @@ export default function EducationPage() {
 
   return (
     <div>
-      {/* BIG INTRO NOTE BANNER */}
-      <motion.div
-        initial={{ opacity: 0, y: -16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="w-full"
-        data-ocid="education.intro.panel"
-      >
-        <div
-          style={{
-            background:
-              "linear-gradient(135deg, oklch(0.65 0.25 300 / 0.12), oklch(0.12 0.02 255 / 0.95))",
-            borderBottom: "2px solid oklch(0.65 0.25 300 / 0.5)",
-            boxShadow:
-              "0 0 40px oklch(0.65 0.25 300 / 0.15), inset 0 1px 0 oklch(0.65 0.25 300 / 0.1)",
-          }}
-          className="px-4 py-6 md:py-8"
-        >
-          <div className="container mx-auto flex flex-col md:flex-row items-start md:items-center gap-4">
-            <div
-              className="flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center"
-              style={{
-                background: "oklch(0.65 0.25 300 / 0.15)",
-                border: "1px solid oklch(0.65 0.25 300 / 0.4)",
-              }}
-            >
-              <GraduationCap
-                className="w-7 h-7"
-                style={{ color: "oklch(0.75 0.28 290)" }}
-              />
-            </div>
-            <div className="flex-1">
-              <div
-                className="font-mono text-xs font-bold uppercase tracking-widest mb-1"
-                style={{ color: "oklch(0.75 0.28 290)" }}
-              >
-                FREE LEARNING ZONE
-              </div>
-              <p
-                className="font-display font-black text-lg md:text-xl leading-snug"
-                style={{ color: "oklch(0.92 0.01 255)" }}
-              >
-                Explore our free education resources below. For{" "}
-                <span style={{ color: "oklch(0.75 0.28 290)" }}>
-                  deep learning of advanced concepts
-                </span>
-                , institutional strategies, and live mentorship —{" "}
-                <span style={{ color: "oklch(0.75 0.28 290)" }}>
-                  you need to take our Membership Plan.
-                </span>
-              </p>
-            </div>
-            <Link to="/membership">
-              <Button
-                className="flex-shrink-0 font-bold"
-                style={{
-                  background:
-                    "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
-                  color: "white",
-                  boxShadow: "0 0 20px oklch(0.65 0.25 300 / 0.4)",
-                }}
-                data-ocid="education.intro.primary_button"
-              >
-                <Crown className="w-4 h-4 mr-2" />
-                Get Membership
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </motion.div>
-
       {/* Hero */}
       <section className="pt-16 py-20 relative overflow-hidden">
         <div className="absolute inset-0 hero-grid opacity-30" />
