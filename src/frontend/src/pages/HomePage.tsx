@@ -55,7 +55,7 @@ const testimonials = [
   {
     name: "Marcus Thornton",
     role: "Professional Forex Trader",
-    text: "TradeEdge Pro transformed my trading. The signal accuracy is unmatched — I've grown my account 140% in six months following their setups.",
+    text: "TradeNikhil Universe Chain transformed my trading. The signal accuracy is unmatched — I've grown my account 140% in six months following their setups.",
     rating: 5,
   },
   {
@@ -98,10 +98,15 @@ export default function HomePage() {
               "url('/assets/generated/trading-hero.dim_1600x900.jpg')",
           }}
         />
-        <div className="absolute inset-0 bg-background/80" />
-        <div className="absolute inset-0 hero-grid" />
-        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-secondary/5 blur-[120px] translate-x-1/2 translate-y-1/2" />
+        {/* Deep darkness overlays */}
+        <div className="absolute inset-0 bg-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent" />
+        <div className="absolute inset-0 hero-grid opacity-20" />
+        {/* Subtle gold glow blobs */}
+        <div className="absolute top-0 left-0 w-[600px] h-[600px] rounded-full bg-primary/8 blur-[140px] -translate-x-1/2 -translate-y-1/2" />
+        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-secondary/8 blur-[140px] translate-x-1/2 translate-y-1/2" />
+        {/* Extra dark vignette at edges */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/60" />
 
         <div className="relative z-10 container mx-auto px-4 pt-24 pb-16">
           <motion.div
@@ -129,7 +134,7 @@ export default function HomePage() {
             >
               Professional forex and cryptocurrency trading signals, expert
               education, and real-time market analysis — everything you need to
-              gain the edge.
+              gain the institutional edge.
             </motion.p>
             <motion.div
               variants={itemVariants}
@@ -149,7 +154,7 @@ export default function HomePage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-border hover:border-secondary hover:text-secondary hover:bg-secondary/5 font-semibold text-base px-8"
+                className="border-white/10 bg-white/5 hover:border-secondary hover:text-secondary hover:bg-secondary/5 font-semibold text-base px-8 backdrop-blur-sm"
                 data-ocid="home.start_learning.button"
               >
                 <Link to="/education">
@@ -159,7 +164,7 @@ export default function HomePage() {
             </motion.div>
           </motion.div>
 
-          {/* Floating stats */}
+          {/* Floating stats — darker cards */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -169,7 +174,7 @@ export default function HomePage() {
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="glass-card rounded-xl p-4 text-center"
+                className="rounded-xl p-4 text-center bg-black/60 border border-white/10 backdrop-blur-md"
               >
                 <div className="font-display font-black text-2xl gold-gradient mb-1">
                   {stat.value}
@@ -189,7 +194,8 @@ export default function HomePage() {
 
       {/* Features */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/3 blur-[100px] rounded-full" />
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-primary/5 blur-[100px] rounded-full" />
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -199,7 +205,7 @@ export default function HomePage() {
             className="text-center mb-16"
           >
             <Badge className="mb-4 bg-secondary/10 text-secondary border border-secondary/30 font-mono text-xs">
-              WHY TRADEEDGE PRO
+              WHY TRADENIKHIL UNIVERSE CHAIN
             </Badge>
             <h2 className="font-display text-4xl lg:text-5xl font-black mb-4">
               Your Complete{" "}
@@ -222,7 +228,7 @@ export default function HomePage() {
               <motion.div
                 key={f.title}
                 variants={itemVariants}
-                className={`glass-card${f.color === "blue" ? "-blue" : ""} rounded-2xl p-8 group hover:scale-[1.02] transition-transform duration-300`}
+                className={`glass-card${f.color === "blue" ? "-blue" : ""} rounded-2xl p-8 group hover:scale-[1.02] transition-transform duration-300 bg-black/20`}
               >
                 <div
                   className={`w-12 h-12 rounded-xl flex items-center justify-center mb-6 ${
@@ -247,8 +253,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Stats Bar */}
-      <section className="py-16 border-y border-border bg-card/30">
+      {/* Stats Bar — very dark */}
+      <section className="py-16 bg-black/50 border-y border-white/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat) => (
@@ -300,7 +306,7 @@ export default function HomePage() {
               <motion.div
                 key={t.name}
                 variants={itemVariants}
-                className="glass-card rounded-2xl p-8"
+                className="glass-card rounded-2xl p-8 bg-black/40"
                 data-ocid={`home.testimonial.item.${i + 1}`}
               >
                 <div className="flex gap-1 mb-4">
@@ -328,10 +334,13 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* CTA — intense dark */}
       <section className="py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5" />
-        <div className="absolute inset-0 hero-grid opacity-50" />
+        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-primary/3" />
+        <div className="absolute inset-0 hero-grid opacity-30" />
+        {/* Central glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-primary/8 blur-[120px] rounded-full" />
         <div className="relative z-10 container mx-auto px-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -343,8 +352,9 @@ export default function HomePage() {
               <span className="gold-gradient">Professional?</span>
             </h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto mb-10">
-              Join 2,000+ traders who rely on TradeEdge Pro signals every day.
-              Start with education or dive straight into live signals.
+              Join 2,000+ traders who rely on TradeNikhil Universe Chain signals
+              every day. Start with education or dive straight into live
+              signals.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
@@ -359,7 +369,7 @@ export default function HomePage() {
                 asChild
                 variant="outline"
                 size="lg"
-                className="border-border hover:border-primary hover:text-primary font-semibold text-base px-10"
+                className="border-white/10 bg-white/5 hover:border-primary hover:text-primary font-semibold text-base px-10"
                 data-ocid="home.cta.contact.button"
               >
                 <Link to="/contact">Contact Us</Link>
