@@ -5,19 +5,80 @@ const eduStats = [
   { label: "Win Rate", value: "85%" },
 ];
 
+const advancedConcepts = [
+  "Smart Money Concepts (SMC)",
+  "Order Blocks",
+  "Fair Value Gaps (FVG)",
+  "Breaker Blocks",
+  "Mitigation Blocks",
+  "Imbalance & Inefficiency",
+  "Inducement & Liquidity Sweeps",
+  "Premium & Discount Zones",
+  "Market Maker Models",
+  "Institutional Order Flow",
+  "Kill Zones (London/NY/Asian)",
+  "Power of 3 (Accumulation, Manipulation, Distribution)",
+  "Daily Bias Trading",
+  "HTF to LTF Confluence",
+  "Swing vs Intraday Setups",
+  "ICT Concepts Overview",
+  "Supply & Demand Zones (Advanced)",
+  "Stop Hunt Patterns",
+  "Rejection Blocks",
+  "Propulsion Blocks",
+  "Void/Vacuum Zones",
+  "Risk-On / Risk-Off Macro",
+  "Correlation Trading (DXY, Gold, Oil)",
+  "Intermarket Analysis",
+  "Seasonal Tendencies",
+];
+
+const conquerorConcepts = [
+  "Liquidity Zones (Buyside/Sellside)",
+  "Taping (Tape Reading)",
+  "Actual Market Structure (AMS)",
+  "DOM (Depth of Market) Analysis",
+  "Footprint Charts",
+  "Delta & Cumulative Delta",
+  "Volume Profile (POC, VAH, VAL)",
+  "VWAP Strategies",
+  "Options Flow for Forex/Crypto",
+  "Whale Wallet Tracking",
+  "On-Chain Analytics",
+  "Funding Rates & OI Analysis",
+  "Dark Pool Activity",
+  "Block Trade Detection",
+  "Gamma Squeeze Identification",
+  "Hedging Strategies",
+  "Carry Trade Framework",
+  "Central Bank Policy Trading",
+  "COT (Commitment of Traders) Report",
+  "News Trading Framework",
+  "Economic Calendar Mastery",
+  "Algorithmic Pattern Recognition",
+  "Backtesting & Forward Testing",
+  "Trading System Development",
+  "Performance Analytics & Journaling",
+  "Psychology of Elite Traders",
+  "Building a Trading Business",
+];
+
 import { Category, type EducationResource } from "@/backend.d";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useGetAllEducationResources } from "@/hooks/useQueries";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import {
   BarChart3,
   BookOpen,
   Clock,
   Crown,
   Layers,
+  Lock,
+  Shield,
+  ShieldCheck,
   Star,
   TrendingUp,
   Zap,
@@ -287,9 +348,122 @@ function CourseCard({
   );
 }
 
+function LockedConceptCard({
+  name,
+  tier,
+  index,
+  onUnlock,
+}: {
+  name: string;
+  tier: "advanced" | "conqueror";
+  index: number;
+  onUnlock: () => void;
+}) {
+  const isConqueror = tier === "conqueror";
+  const accentColor = isConqueror
+    ? "oklch(0.82 0.18 55)" // gold for conqueror
+    : "oklch(0.65 0.25 300)"; // purple for advanced
+  const accentBg = isConqueror
+    ? "oklch(0.82 0.18 55 / 0.12)"
+    : "oklch(0.65 0.25 300 / 0.12)";
+  const accentBorder = isConqueror
+    ? "oklch(0.82 0.18 55 / 0.35)"
+    : "oklch(0.65 0.25 300 / 0.35)";
+  const ShieldIcon = isConqueror ? Crown : Shield;
+  const planLabel = isConqueror ? "CONQUEROR PLAN" : "ADVANCED PLAN";
+
+  return (
+    <motion.button
+      type="button"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: (index % 9) * 0.05, duration: 0.35 }}
+      whileHover={{ scale: 1.03, y: -2 }}
+      onClick={onUnlock}
+      className="relative w-full text-left rounded-xl p-4 cursor-pointer select-none overflow-hidden flex flex-col gap-3 group"
+      style={{
+        background:
+          "linear-gradient(135deg, oklch(0.10 0.015 300 / 0.9), oklch(0.08 0.01 270 / 0.95))",
+        border: `1px solid ${accentBorder}`,
+        boxShadow: `0 0 0 0 ${accentColor}`,
+      }}
+      data-ocid={`education.advanced.item.${index + 1}`}
+    >
+      {/* Dim overlay */}
+      <div
+        className="absolute inset-0 rounded-xl pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0 0 0 / 0.35), oklch(0 0 0 / 0.15))",
+        }}
+      />
+
+      {/* Glow on hover */}
+      <div
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          boxShadow: `inset 0 0 20px ${accentBg}, 0 0 20px ${accentBg}`,
+        }}
+      />
+
+      <div className="relative z-10 flex items-start justify-between gap-2">
+        <div className="flex items-center gap-2 flex-1 min-w-0">
+          {/* Shield icon */}
+          <div
+            className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
+            style={{
+              background: accentBg,
+              border: `1px solid ${accentBorder}`,
+            }}
+          >
+            <ShieldIcon className="w-4 h-4" style={{ color: accentColor }} />
+          </div>
+          <span
+            className="font-display font-semibold text-sm leading-tight"
+            style={{ color: "oklch(0.85 0.05 270)" }}
+          >
+            {name}
+          </span>
+        </div>
+        {/* Lock badge */}
+        <div
+          className="flex-shrink-0 flex items-center gap-1 px-2 py-1 rounded-full"
+          style={{ background: accentBg, border: `1px solid ${accentBorder}` }}
+        >
+          <Lock className="w-3 h-3" style={{ color: accentColor }} />
+        </div>
+      </div>
+
+      {/* Plan badge */}
+      <div className="relative z-10">
+        <span
+          className="font-mono text-[10px] font-bold tracking-wider px-2 py-0.5 rounded"
+          style={{
+            background: accentBg,
+            color: accentColor,
+            border: `1px solid ${accentBorder}`,
+          }}
+        >
+          {planLabel}
+        </span>
+      </div>
+
+      {/* Unlock hint */}
+      <div
+        className="relative z-10 text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+        style={{ color: accentColor }}
+      >
+        Click to unlock →
+      </div>
+    </motion.button>
+  );
+}
+
 export default function EducationPage() {
   const [activeLevel, setActiveLevel] = useState<Level>("all");
   const { data: backendResources, isLoading } = useGetAllEducationResources();
+  const navigate = useNavigate();
 
   const allResources =
     backendResources && backendResources.length > 0
@@ -300,6 +474,10 @@ export default function EducationPage() {
     activeLevel === "all"
       ? allResources
       : allResources.filter((r) => r.difficultyLevel === activeLevel);
+
+  function handleUnlock() {
+    navigate({ to: "/membership" });
+  }
 
   return (
     <div>
@@ -436,6 +614,193 @@ export default function EducationPage() {
           </div>
         )}
       </div>
+
+      {/* ====== ADVANCED CONCEPTS — LOCKED SECTION ====== */}
+      <motion.section
+        initial={{ opacity: 0, y: 32 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="container mx-auto px-4 pb-20"
+        data-ocid="education.advanced.section"
+      >
+        {/* Section header */}
+        <div className="text-center mb-10">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full font-mono text-xs font-bold uppercase tracking-widest mb-5"
+            style={{
+              background: "oklch(0.65 0.25 300 / 0.12)",
+              border: "1px solid oklch(0.65 0.25 300 / 0.4)",
+              color: "oklch(0.75 0.28 290)",
+            }}
+          >
+            <Lock className="w-3.5 h-3.5" />
+            MEMBERS ONLY
+          </div>
+          <h2 className="font-display font-black text-4xl md:text-5xl mb-4">
+            🔒 Advanced Concepts
+          </h2>
+          <p
+            className="text-sm md:text-base max-w-2xl mx-auto mb-2"
+            style={{ color: "oklch(0.65 0.12 270)" }}
+          >
+            These concepts are exclusively available to{" "}
+            <strong style={{ color: "oklch(0.75 0.28 290)" }}>Advanced</strong>{" "}
+            and{" "}
+            <strong style={{ color: "oklch(0.82 0.18 55)" }}>Conqueror</strong>{" "}
+            members. Click any topic to unlock access.
+          </p>
+        </div>
+
+        {/* ── ADVANCED PLAN ── */}
+        <div className="mb-14">
+          <div className="flex items-center gap-3 mb-6">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{
+                background: "oklch(0.65 0.25 300 / 0.15)",
+                border: "1px solid oklch(0.65 0.25 300 / 0.4)",
+              }}
+            >
+              <Shield
+                className="w-5 h-5"
+                style={{ color: "oklch(0.75 0.28 290)" }}
+              />
+            </div>
+            <div>
+              <h3
+                className="font-display font-black text-xl"
+                style={{ color: "oklch(0.75 0.28 290)" }}
+              >
+                Advanced Plan
+              </h3>
+              <p className="text-xs text-muted-foreground font-mono">
+                {advancedConcepts.length} exclusive concepts
+              </p>
+            </div>
+            <div className="ml-auto">
+              <span
+                className="font-mono text-xs font-bold px-3 py-1 rounded-full"
+                style={{
+                  background: "oklch(0.65 0.25 300 / 0.15)",
+                  border: "1px solid oklch(0.65 0.25 300 / 0.4)",
+                  color: "oklch(0.75 0.28 290)",
+                }}
+              >
+                ADVANCED PLAN REQUIRED
+              </span>
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+            data-ocid="education.advanced.list"
+          >
+            {advancedConcepts.map((name, i) => (
+              <LockedConceptCard
+                key={name}
+                name={name}
+                tier="advanced"
+                index={i}
+                onUnlock={handleUnlock}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ── CONQUEROR PLAN ── */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <div
+              className="w-10 h-10 rounded-xl flex items-center justify-center"
+              style={{
+                background: "oklch(0.82 0.18 55 / 0.15)",
+                border: "1px solid oklch(0.82 0.18 55 / 0.4)",
+              }}
+            >
+              <Crown
+                className="w-5 h-5"
+                style={{ color: "oklch(0.82 0.18 55)" }}
+              />
+            </div>
+            <div>
+              <h3
+                className="font-display font-black text-xl"
+                style={{ color: "oklch(0.82 0.18 55)" }}
+              >
+                Conqueror Plan
+              </h3>
+              <p className="text-xs text-muted-foreground font-mono">
+                {conquerorConcepts.length} elite concepts
+              </p>
+            </div>
+            <div className="ml-auto">
+              <span
+                className="font-mono text-xs font-bold px-3 py-1 rounded-full"
+                style={{
+                  background: "oklch(0.82 0.18 55 / 0.15)",
+                  border: "1px solid oklch(0.82 0.18 55 / 0.4)",
+                  color: "oklch(0.82 0.18 55)",
+                }}
+              >
+                CONQUEROR PLAN REQUIRED
+              </span>
+            </div>
+          </div>
+          <div
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+            data-ocid="education.conqueror.list"
+          >
+            {conquerorConcepts.map((name, i) => (
+              <LockedConceptCard
+                key={name}
+                name={name}
+                tier="conqueror"
+                index={i}
+                onUnlock={handleUnlock}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Divider prompt */}
+        <div
+          className="mt-12 text-center rounded-2xl py-8 px-6"
+          style={{
+            background:
+              "linear-gradient(135deg, oklch(0.65 0.25 300 / 0.08), oklch(0.82 0.18 55 / 0.06))",
+            border: "1px solid oklch(0.65 0.25 300 / 0.25)",
+          }}
+        >
+          <ShieldCheck
+            className="w-10 h-10 mx-auto mb-3"
+            style={{ color: "oklch(0.75 0.28 290)" }}
+          />
+          <p
+            className="font-display font-bold text-lg mb-1"
+            style={{ color: "oklch(0.85 0.1 270)" }}
+          >
+            52 Advanced Topics. All Locked. One Plan Unlocks Everything.
+          </p>
+          <p className="text-sm text-muted-foreground mb-5">
+            Join Advanced or Conqueror tier to access institutional-level
+            strategies not taught anywhere else.
+          </p>
+          <Button
+            onClick={handleUnlock}
+            className="font-bold px-8 py-5 rounded-xl"
+            style={{
+              background:
+                "linear-gradient(135deg, oklch(0.65 0.25 300), oklch(0.75 0.28 290))",
+              color: "white",
+              boxShadow: "0 0 24px oklch(0.65 0.25 300 / 0.45)",
+            }}
+            data-ocid="education.advanced.primary_button"
+          >
+            <Crown className="w-4 h-4 mr-2" />
+            Unlock All Advanced Concepts
+          </Button>
+        </div>
+      </motion.section>
 
       {/* BIG OUTRO / MEMBERSHIP CTA */}
       <motion.section
