@@ -249,7 +249,7 @@ export default function MembershipPage() {
                   }`}
                   data-ocid={`membership.${tier.id}.primary_button`}
                 >
-                  <Link to="/payment">
+                  <Link to="/shop">
                     <Zap className="w-4 h-4 mr-2" />
                     {tier.cta}
                   </Link>
@@ -258,7 +258,7 @@ export default function MembershipPage() {
                 {/* Already a member link */}
                 <div className="mt-3 text-center">
                   <Link
-                    to={tier.memberPath}
+                    to="/shop"
                     className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2"
                     data-ocid={`membership.${tier.id}.link`}
                   >

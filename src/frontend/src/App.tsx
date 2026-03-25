@@ -1,30 +1,43 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import AnnouncementBar from "@/components/ecom/AnnouncementBar";
+import EcomFooter from "@/components/ecom/EcomFooter";
+import ExitPopup from "@/components/ecom/ExitPopup";
+import Header from "@/components/ecom/Header";
+import LiveSalesPopup from "@/components/ecom/LiveSalesPopup";
 import { Toaster } from "@/components/ui/sonner";
-import AboutPage from "@/pages/AboutPage";
-import ContactPage from "@/pages/ContactPage";
-import EducationPage from "@/pages/EducationPage";
-import HomePage from "@/pages/HomePage";
-import MembershipPage from "@/pages/MembershipPage";
-import PaymentPage from "@/pages/PaymentPage";
-import SignalsPage from "@/pages/SignalsPage";
-import AdvanceMemberPage from "@/pages/member/AdvanceMemberPage";
-import BasicMemberPage from "@/pages/member/BasicMemberPage";
-import ConquerorMemberPage from "@/pages/member/ConquerorMemberPage";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-import { createRootRoute, createRoute } from "@tanstack/react-router";
-import { Outlet } from "@tanstack/react-router";
+import { CartProvider } from "@/context/CartContext";
+import CartPage from "@/pages/ecom/CartPage";
+import CheckoutPage from "@/pages/ecom/CheckoutPage";
+import ContactEcomPage from "@/pages/ecom/ContactEcomPage";
+import HomePage from "@/pages/ecom/HomePage";
+import ProductPage from "@/pages/ecom/ProductPage";
+import ShopPage from "@/pages/ecom/ShopPage";
+import TrackOrderPage from "@/pages/ecom/TrackOrderPage";
+import {
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+} from "@tanstack/react-router";
 
 const rootRoute = createRootRoute({
   component: () => (
-    <div className="min-h-screen flex flex-col bg-background">
-      <Navbar />
-      <main className="flex-1">
-        <Outlet />
-      </main>
-      <Footer />
-      <Toaster richColors position="top-right" />
-    </div>
+    <CartProvider>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{ background: "#0A0F1C" }}
+      >
+        <AnnouncementBar />
+        <Header />
+        <main className="flex-1 pb-24">
+          <Outlet />
+        </main>
+        <EcomFooter />
+        <Toaster richColors position="top-right" />
+        <LiveSalesPopup />
+        <ExitPopup />
+      </div>
+    </CartProvider>
   ),
 });
 
@@ -34,71 +47,50 @@ const indexRoute = createRoute({
   component: HomePage,
 });
 
-const aboutRoute = createRoute({
+const shopRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/about",
-  component: AboutPage,
+  path: "/shop",
+  component: ShopPage,
 });
 
-const signalsRoute = createRoute({
+const productRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/signals",
-  component: SignalsPage,
+  path: "/product/$id",
+  component: ProductPage,
 });
 
-const educationRoute = createRoute({
+const cartRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/education",
-  component: EducationPage,
+  path: "/cart",
+  component: CartPage,
 });
 
-const membershipRoute = createRoute({
+const checkoutRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/membership",
-  component: MembershipPage,
+  path: "/checkout",
+  component: CheckoutPage,
 });
 
-const paymentRoute = createRoute({
+const trackRoute = createRoute({
   getParentRoute: () => rootRoute,
-  path: "/payment",
-  component: PaymentPage,
+  path: "/track",
+  component: TrackOrderPage,
 });
 
 const contactRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/contact",
-  component: ContactPage,
-});
-
-const basicMemberRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/member/basic",
-  component: BasicMemberPage,
-});
-
-const advanceMemberRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/member/advance",
-  component: AdvanceMemberPage,
-});
-
-const conquerorMemberRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: "/member/conqueror",
-  component: ConquerorMemberPage,
+  component: ContactEcomPage,
 });
 
 const routeTree = rootRoute.addChildren([
   indexRoute,
-  aboutRoute,
-  signalsRoute,
-  educationRoute,
-  membershipRoute,
-  paymentRoute,
+  shopRoute,
+  productRoute,
+  cartRoute,
+  checkoutRoute,
+  trackRoute,
   contactRoute,
-  basicMemberRoute,
-  advanceMemberRoute,
-  conquerorMemberRoute,
 ]);
 
 const router = createRouter({ routeTree });

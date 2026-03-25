@@ -1,23 +1,32 @@
-# TradeNikhil Universe Chain
+# Nex Cartify
 
 ## Current State
-- Education page has ~20 free course cards with filter tabs and a membership CTA at bottom
-- About page has Nikhil's CEO card with a gold-bordered premium style
+New project — no existing application files.
 
 ## Requested Changes (Diff)
 
 ### Add
-- New "Advanced Concepts" section on the Education page with 50+ locked concept cards
-- Each concept card shows a shield badge indicating required membership tier (Advanced or Conqueror)
-- Clicking any locked concept redirects to /membership page
-- Concepts include: Liquidity Zones, Actual Market Structure, Order Blocks, FVG, SMC, AMD/Power of 3, ICT Kill Zones, Wyckoff, Elliott Wave, Harmonic Patterns, and 40+ more
+- Premium Indian eCommerce website with dark luxury theme
+- Full homepage with: announcement bar, sticky header, hero, categories, best sellers, problem/solution, flash deal (countdown timer), trust section, social proof, why us section, footer
+- Product detail page with image gallery, pricing (₹1999→₹799), urgency timer, sticky CTA, benefits, reviews, FAQ, upsell
+- Collection/shop page with grid layout, filters (price, category, rating), quick view
+- Cart page with product summary, trust badges, upsell item
+- Checkout page with minimal fields, COD/UPI/Cards payment options
+- Conversion features: live sales popup ("Rahul from Delhi just bought this"), exit intent popup (10% OFF), cart reservation timer
+- Order tracking page
+- Contact page
+- React Router navigation
 
 ### Modify
-- Nikhil Singh CEO biography card on About page: elevate to ultra-premium golden finish with richer gold gradients, glowing borders, animated shimmer, more detailed biography text, achievement timeline, signature quote block
+N/A (new project)
 
 ### Remove
-- Nothing removed
+N/A (new project)
 
 ## Implementation Plan
-1. Update EducationPage.tsx — add AdvancedConceptsSection below the existing courses grid, before the membership CTA
-2. Update AboutPage.tsx — redesign Nikhil's card with premium golden styling, shimmer effect, expanded bio, timeline, awards
+1. Backend: store products, categories, cart items, orders with basic CRUD
+2. Frontend pages: Home, Shop/Collection, Product, Cart, Checkout, Track Order, Contact
+3. Global design system: OKLCH color tokens matching the specified palette
+4. Conversion components: LiveSalesPopup, ExitPopup, CountdownTimer, UrgencyBar
+5. Reusable: ProductCard, CategoryCard, TrustBadges, ReviewCard
+6. Mobile-first responsive layout throughout

@@ -17,8 +17,8 @@ export default {
     extend: {
       fontFamily: {
         display: ['Bricolage Grotesque', 'sans-serif'],
-        body: ['Sora', 'sans-serif'],
-        mono: ['Geist Mono', 'monospace'],
+        body: ['Plus Jakarta Sans', 'sans-serif'],
+        mono: ['monospace'],
       },
       colors: {
         border: "oklch(var(--border))",
@@ -71,10 +71,6 @@ export default {
           border: "oklch(var(--sidebar-border))",
           ring: "oklch(var(--sidebar-ring))",
         },
-        gold: "oklch(var(--gold))",
-        blue: "oklch(var(--blue))",
-        "signal-green": "oklch(var(--green-signal))",
-        "signal-red": "oklch(var(--red-signal))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -82,9 +78,11 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: {
-        xs: "0 1px 2px 0 rgba(0,0,0,0.05)",
-        "gold": "0 0 20px oklch(0.78 0.12 85 / 0.3)",
-        "blue": "0 0 20px oklch(0.62 0.18 235 / 0.3)",
+        glass: "0 10px 30px rgba(0,0,0,0.35)",
+        "glass-lg": "0 20px 50px rgba(0,0,0,0.5)",
+        indigo: "0 0 20px rgba(99,102,241,0.3)",
+        "indigo-lg": "0 0 40px rgba(99,102,241,0.4)",
+        orange: "0 4px 20px rgba(249,115,22,0.4)",
       },
       keyframes: {
         "accordion-down": {

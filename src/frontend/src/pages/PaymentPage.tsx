@@ -145,7 +145,7 @@ export default function PaymentPage() {
                   via email or WhatsApp within 2 hours. Use this code to unlock
                   your exclusive member area on the{" "}
                   <Link
-                    to="/membership"
+                    to="/shop"
                     className="text-primary hover:text-primary/80 underline underline-offset-2"
                     data-ocid="payment.membership.link"
                   >
@@ -302,7 +302,7 @@ export default function PaymentPage() {
             className="bg-primary text-primary-foreground hover:bg-primary/90 gold-glow font-display font-bold"
             data-ocid="payment.view_plans.button"
           >
-            <Link to="/membership">View Membership Plans</Link>
+            <Link to="/shop">View Membership Plans</Link>
           </Button>
         </motion.div>
       </section>

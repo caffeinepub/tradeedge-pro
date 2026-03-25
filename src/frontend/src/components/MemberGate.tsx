@@ -6,9 +6,9 @@ import { AnimatePresence, motion } from "motion/react";
 import { type ReactNode, useState } from "react";
 
 const ACCESS_CODES: Record<string, string> = {
-  basic: "BASIC2024",
-  advance: "ADVANCE2024",
-  conqueror: "CONQUEROR2024",
+  basic: "ELVENOM",
+  advance: "ELWORLD",
+  conqueror: "ELDRUGS",
 };
 
 const TIER_LABELS: Record<string, string> = {
@@ -20,7 +20,7 @@ const TIER_LABELS: Record<string, string> = {
 const BACKDROP_KEYS = ["a", "b", "c", "d", "e", "f", "g", "h", "i"];
 
 function getStorageKey(tier: string) {
-  return `membership_${tier}`;
+  return `membership_${tier}_v2`;
 }
 
 function isUnlocked(tier: string) {
@@ -130,9 +130,9 @@ export default function MemberGate({ tier, children }: MemberGateProps) {
               Members Only
             </h2>
             <p className="text-muted-foreground text-sm mb-8 leading-relaxed">
-              Purchase the{" "}
+              Enter your{" "}
               <span className="text-foreground font-semibold">{tierLabel}</span>{" "}
-              membership to access this exclusive content.
+              membership access code to unlock exclusive content.
             </p>
 
             {/* Code input */}
@@ -183,7 +183,7 @@ export default function MemberGate({ tier, children }: MemberGateProps) {
               className="w-full border-primary/30 text-primary hover:bg-primary/10"
               data-ocid={`member_gate.${tier}.secondary_button`}
             >
-              <Link to="/membership">Purchase {tierLabel} Membership →</Link>
+              <Link to="/shop">Purchase {tierLabel} Membership →</Link>
             </Button>
           </div>
         </motion.div>

@@ -1,0 +1,366 @@
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("/assets/fonts/PlusJakartaSans[wght].woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2")
+    format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Nex Cartify Dark Premium Theme */
+    /* #0A0F1C → oklch(0.09 0.025 264) */
+    --background: 0.09 0.025 264;
+    /* #F9FAFB → oklch(0.98 0.003 255) */
+    --foreground: 0.98 0.003 255;
+    /* #111827 → oklch(0.13 0.025 264) */
+    --card: 0.13 0.025 264;
+    --card-foreground: 0.98 0.003 255;
+    --popover: 0.13 0.025 264;
+    --popover-foreground: 0.98 0.003 255;
+    /* #6366F1 indigo → oklch(0.55 0.24 277) */
+    --primary: 0.55 0.24 277;
+    --primary-foreground: 0.98 0.003 255;
+    /* #111827 → dark surface */
+    --secondary: 0.13 0.025 264;
+    --secondary-foreground: 0.98 0.003 255;
+    --muted: 0.15 0.02 264;
+    /* #9CA3AF → oklch(0.67 0.01 255) */
+    --muted-foreground: 0.67 0.01 255;
+    /* #F97316 orange → oklch(0.68 0.2 48) */
+    --accent: 0.68 0.2 48;
+    --accent-foreground: 0.98 0.003 255;
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.98 0.003 255;
+    --border: 0.2 0.02 264;
+    --input: 0.15 0.02 264;
+    --ring: 0.55 0.24 277;
+    --radius: 0.875rem;
+    /* #22C55E trust green → oklch(0.72 0.22 145) */
+    --trust: 0.72 0.22 145;
+    /* CTA orange */
+    --cta: 0.68 0.2 48;
+    --chart-1: 0.55 0.24 277;
+    --chart-2: 0.68 0.2 48;
+    --chart-3: 0.72 0.22 145;
+    --chart-4: 0.62 0.22 25;
+    --chart-5: 0.65 0.2 310;
+    --sidebar: 0.11 0.025 264;
+    --sidebar-foreground: 0.98 0.003 255;
+    --sidebar-primary: 0.55 0.24 277;
+    --sidebar-primary-foreground: 0.98 0.003 255;
+    --sidebar-accent: 0.15 0.02 264;
+    --sidebar-accent-foreground: 0.98 0.003 255;
+    --sidebar-border: 0.2 0.02 264;
+    --sidebar-ring: 0.55 0.24 277;
+  }
+
+  * {
+    @apply border-border;
+    box-sizing: border-box;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Plus Jakarta Sans", "Bricolage Grotesque", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px
+      rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .cta-button {
+    background: #f97316;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .cta-button:hover {
+    background: #ea6a0a;
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(249, 115, 22, 0.4);
+  }
+
+  .indigo-button {
+    background: #6366f1;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+  }
+
+  .indigo-button:hover {
+    background: #5558e8;
+    transform: scale(1.03);
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+  }
+
+  .indigo-glow {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+
+  .orange-glow {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.3);
+  }
+
+  .trust-badge {
+    color: #22c55e;
+  }
+
+  .discount-badge {
+    background: #f97316;
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  .stars {
+    color: #f97316;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #f9fafb;
+  }
+
+  .text-muted-custom {
+    color: #9ca3af;
+  }
+
+  .bg-surface {
+    background-color: #111827;
+  }
+
+  .bg-base {
+    background-color: #0a0f1c;
+  }
+
+  .border-custom {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .indigo-text {
+    color: #6366f1;
+  }
+
+  .orange-text {
+    color: #f97316;
+  }
+
+  .green-text {
+    color: #22c55e;
+  }
+
+  .indigo-gradient-text {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-gradient-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(10, 15, 28, 0.85) 0%,
+      rgba(10, 15, 28, 0.4) 60%,
+      rgba(99, 102, 241, 0.1) 100%
+    );
+  }
+
+  .indigo-glow-border {
+    border: 1px solid rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.2);
+  }
+
+  .category-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .category-card:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 8px 30px rgba(99, 102, 241, 0.2), 0 0 40px
+      rgba(99, 102, 241, 0.1);
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  .product-card {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .product-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(99, 102, 241, 0.1);
+    transform: translateY(-3px);
+  }
+
+  .countdown-digit {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    min-width: 3.5rem;
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: 700;
+    color: #f9fafb;
+    font-variant-numeric: tabular-nums;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes pulse-orange {
+    0%,
+    100% {
+      box-shadow: 0 0 10px rgba(249, 115, 22, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 25px rgba(249, 115, 22, 0.6);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes ticker {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-slide-in-left {
+    animation: slideInLeft 0.4s ease forwards;
+  }
+
+  .animate-fade-up {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease forwards;
+  }
+
+  .animate-pulse-orange {
+    animation: pulse-orange 2s ease-in-out infinite;
+  }
+
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
+  }
+
+  .progress-bar-orange {
+    background: linear-gradient(90deg, #f97316, #fbbf24);
+    height: 6px;
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0a0f1c;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #6366f1;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8b5cf6;
+  }
+}

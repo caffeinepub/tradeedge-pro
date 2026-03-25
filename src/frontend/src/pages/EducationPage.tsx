@@ -73,6 +73,8 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import {
   BarChart3,
   BookOpen,
+  ChevronDown,
+  ChevronUp,
   Clock,
   Crown,
   Layers,
@@ -84,7 +86,7 @@ import {
   Zap,
 } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 type Level = "all" | "beginner" | "intermediate" | "advanced" | "analysis";
 
@@ -291,33 +293,38 @@ function formatDuration(mins: bigint) {
   return rem > 0 ? `${h}h ${rem}m` : `${h}h`;
 }
 
-function CourseCard({
+const CourseCard = memo(function CourseCard({
   resource,
   index,
 }: { resource: EducationResource; index: number }) {
   const Icon = categoryIcons[resource.category] ?? BookOpen;
   const levelClass =
     levelColors[resource.difficultyLevel] ?? levelColors.beginner;
+  const [expanded, setExpanded] = useState(false);
+  const SHORT_LEN = 90;
+  const desc = resource.description;
+  const isLong = desc.length > SHORT_LEN;
 
   const categoryStyle =
     resource.category === Category.crypto
       ? {
-          background: "oklch(0.62 0.18 235 / 0.1)",
-          color: "oklch(0.62 0.18 235)",
-          border: "1px solid oklch(0.62 0.18 235 / 0.25)",
+          background: "oklch(0.55 0.18 245 / 0.1)",
+          color: "oklch(0.65 0.18 245)",
+          border: "1px solid oklch(0.55 0.18 245 / 0.25)",
         }
       : {
-          background: "oklch(0.65 0.25 300 / 0.1)",
-          color: "oklch(0.65 0.25 300)",
-          border: "1px solid oklch(0.65 0.25 300 / 0.25)",
+          background: "oklch(0.62 0.25 25 / 0.08)",
+          color: "oklch(0.75 0.22 25)",
+          border: "1px solid oklch(0.62 0.25 25 / 0.2)",
         };
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.07, duration: 0.4 }}
-      className="glass-card rounded-2xl p-7 hover:scale-[1.02] transition-transform duration-300 flex flex-col"
+      transition={{ delay: index * 0.05, duration: 0.35 }}
+      className="glass-card rounded-2xl p-7 flex flex-col"
+      style={{ willChange: "transform" }}
       data-ocid={`education.item.${index + 1}`}
     >
       <div className="flex items-start justify-between mb-5">
@@ -328,10 +335,35 @@ function CourseCard({
           {resource.difficultyLevel}
         </Badge>
       </div>
-      <h3 className="font-display font-bold text-lg mb-3">{resource.title}</h3>
-      <p className="text-sm text-muted-foreground leading-relaxed flex-1 mb-5">
-        {resource.description}
-      </p>
+      <h3
+        className="font-display font-bold text-lg mb-3"
+        style={{ color: "oklch(0.96 0.005 255)" }}
+      >
+        {resource.title}
+      </h3>
+      <div className="flex-1 mb-3">
+        <p className="text-sm text-muted-foreground leading-relaxed">
+          {expanded || !isLong ? desc : `${desc.slice(0, SHORT_LEN)}...`}
+        </p>
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-2 flex items-center gap-1 text-xs font-mono font-semibold transition-colors duration-200"
+            style={{
+              color: expanded ? "oklch(0.75 0.22 25)" : "oklch(0.55 0.02 255)",
+            }}
+            data-ocid={`education.item.${index + 1}.toggle`}
+          >
+            {expanded ? (
+              <ChevronUp className="w-3.5 h-3.5" />
+            ) : (
+              <ChevronDown className="w-3.5 h-3.5" />
+            )}
+            {expanded ? "Show Less" : "Read More"}
+          </button>
+        )}
+      </div>
       <div className="flex items-center justify-between pt-4 border-t border-border/50">
         <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
           <Clock className="w-3.5 h-3.5" />
@@ -346,7 +378,7 @@ function CourseCard({
       </div>
     </motion.div>
   );
-}
+});
 
 function LockedConceptCard({
   name,
@@ -476,7 +508,7 @@ export default function EducationPage() {
       : allResources.filter((r) => r.difficultyLevel === activeLevel);
 
   function handleUnlock() {
-    navigate({ to: "/membership" });
+    navigate({ to: "/shop" });
   }
 
   return (
@@ -879,7 +911,7 @@ export default function EducationPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link to="/membership">
+              <Link to="/shop">
                 <Button
                   size="lg"
                   className="font-bold text-lg px-10 py-6 rounded-xl"
@@ -896,7 +928,7 @@ export default function EducationPage() {
                   Get Membership Now
                 </Button>
               </Link>
-              <Link to="/about">
+              <Link to="/">
                 <Button
                   variant="outline"
                   size="lg"
